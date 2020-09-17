@@ -143,17 +143,19 @@
             showSelectedList()
         }
 
-        function minusClick(count, price) {
-            let num = $(`#numBox${count}`).val();
+        function minusClick(menu, price) {
+            let num = $(`#numBox${menu}`).val();
             let minusNum = Number(num) - 1;
 
             if (minusNum === 0) {
                 total -= price
-                $(`#numBox${count}`).val(0);
+                $(`#numBox${menu}`).val(0);
+                $(`input:checkbox[name=${menu}]`).prop("checked", false);
             } else if (minusNum < 0) {
-                $(`#numBox${count}`).val(0);
+                $(`#numBox${menu}`).val(0);
+                $(`input:checkbox[name=${menu}]`).prop("checked", false);
             } else {
-                $(`#numBox${count}`).val(minusNum);
+                $(`#numBox${menu}`).val(minusNum);
                 total -= price
             }
             $('#totalPrice').val(injectComma(total));
